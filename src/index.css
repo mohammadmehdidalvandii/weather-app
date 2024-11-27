@@ -1,68 +1,47 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* <<<< Import File Font >>>> */
+@font-face {
+  font-family: danaBlack;
+  src: url('/public/assets/font/Dana-Black.woff') format("woff");
+};
+@font-face {
+  font-family: danaBold;
+  src: url('/public/assets/font/Dana-Bold.woff') format("woff");
+};
+@font-face {
+  font-family: danaMedium;
+  src: url('/public/assets/font/Dana-Medium.woff');
+};
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* <<<< Root  >>>> */
+:root{
+  --danaMedium : danaMedium;
+  --danaBold : danaBold;
+  --danaBlack: danaBlack;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary: #4E81FB;
+  --secondary: #2ED573;
+  --success: #28293D;
+  --blue-100 : #0EA5E9;
+  --white: #ffffff;
+  --bg-color: #1C1C28
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* <<<< Container >>>> */
+.container{
+  max-width: 70rem; /* 70rem = 1120px  1rem = 16px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
-a:hover {
-  color: #535bf2;
-}
-
-body {
+/* <<<< Body >>>> */
+body{
+  position: relative;
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+  padding: 0;
+  font-family: var(--danaMedium) !important;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+};
