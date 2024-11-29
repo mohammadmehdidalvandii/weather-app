@@ -1,38 +1,29 @@
+
 /* <<<< Import File Font >>>> */
 @font-face {
   font-family: "danaBlack";
-  src: url('/public/assets/font/Dana-Black.woff') format("woff");
-};
+  src: url('/public/assets/font/Dana-Black.woff'),  format("woff");
+}
 @font-face {
   font-family: "danaBold";
-  src: url('/public/assets/font/Dana-Bold.woff') format("woff");
-};
+  src: url('/public/assets/font/Dana-Bold.woff') , format("woff");
+}
 @font-face {
   font-family: "danaMedium";
-  src: url('/public/assets/font/Dana-Medium.woff');
-};
-
+  src: url('/public/assets/font/Dana-Medium.woff'),  format("woff");
+}
 /* <<<< Root  >>>> */
 :root{
   --danaMedium : danaMedium;
   --danaBold : danaBold;
   --danaBlack: danaBlack;
 
-  --primary: #4E81FB;
-  --secondary: #2ED573;
-  --success: #28293D;
-  --blue-100 : #0EA5E9;
-  --white: #ffffff;
-  --bg-color: #1C1C28;
-}
-
-/* <<<< Container >>>> */
-.container{
-  max-width: 70rem; /* 70rem = 1120px  1rem = 16px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  --primary:#4E81FB;
+  --secondary:#2ED573;
+  --success:#28293D;
+  --blue-100:#0EA5E9;
+  --white:#ffffff;
+  --bg-color:#1C1C28;
 }
 /* <<<< Body >>>> */
 body{
@@ -44,6 +35,15 @@ body{
   font-size: 1rem;
   line-height: 1.5;
   font-weight: normal;
-  color: #ffffff;
-  background: #1C1C28 !important;
-};
+  color: var(--white);
+  background: var(--bg-color) ;
+}
+/* <<<< Container >>>> */
+.container{
+  max-width: 70rem; /* 70rem = 1120px  1rem = 16px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
