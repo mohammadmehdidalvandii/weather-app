@@ -21,9 +21,12 @@
   --primary:#4E81FB;
   --secondary:#2ED573;
   --success:#28293D;
+  --green-100:#16A34A;
   --blue-100:#0EA5E9;
+  --blue-200:#0284C7;
   --white:#ffffff;
   --bg-color:#1C1C28;
+  --shadow:#2F3542;
 }
 /* <<<< Body >>>> */
 body{
