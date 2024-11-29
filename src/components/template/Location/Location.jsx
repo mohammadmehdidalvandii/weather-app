@@ -7,7 +7,7 @@ function Location() {
   const [loading , setLoading] = useState(false);
   const [city , setCity ] = useState("")
 
-  const handlerSearchCity = ()=>{
+  const handlerGetWeather = ()=>{
     setLoading(true);
     setTimeout(()=>{
       setLoading(false)
@@ -58,11 +58,12 @@ function Location() {
                   <span className="location_city">نام شهر شما : {city}</span>
                 )}
                 <input type="text" className="location_input"  placeholder=" tehran "
+                onChange={(event)=>setCity(event.target.value)}
                 value={city}
                 />
                 <div className="location_buttons">
                   <button className="location_btn"
-                  onClick={handlerSearchCity}
+                  onClick={handlerGetWeather}
                   >جستجو</button>
                   <button className="location_btn"
                   onClick={handlerGetLocation}
