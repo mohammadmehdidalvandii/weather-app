@@ -24,9 +24,16 @@
     text-align: center;
     color: var(--secondary);
 }
+.location_city{
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--white);
+}
 .location_input{
     display: block;
-    margin-top: 4rem;
+    margin-top: 3rem;
     width: 100%;
     height: 3rem;
     outline: none;
