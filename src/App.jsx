@@ -5,17 +5,9 @@ import WeatherContext from "./Context/weatherContext";
 
 function App() {
   const router = useRoutes(routes)
-  const [weather , setWeather] = useState([])
   return (
   <>
-  <WeatherContext.Provider
-    value={{
-      weather,
-      setWeather
-    }}
-  >
   {router}
-  </WeatherContext.Provider>
   </>
   )
 }
