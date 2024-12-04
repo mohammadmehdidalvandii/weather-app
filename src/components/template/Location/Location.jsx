@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState  } from "react";
 import "./Location.css";
 import IsLoading from "../IsLoading/IsLoading";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 function Location() {
+const navigate = useNavigate()
   const [loading , setLoading] = useState(false);
   const [city , setCity ] = useState("")
-
-  const handlerGetWeather = ()=>{
+  
+  useEffect(()=>{
+    const getDataWeather = localStorage.getItem("weatherData") ||null;
+    if(getDataWeather){
+      navigate("/Weather")
+    }
+  },[])
+ 
+  const key_api = "e71388857ca1f6798e51fed62c6c3a39"
+  const handlerGetWeather = async ()=>{
     setLoading(true);
-    setTimeout(()=>{
-      setLoading(false)
-    },4000)
-  };
+    const res = await  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key_api}&units=metric`)
+    if(res.status === 200){
+      const data = await res.json()
+      console.log("data=>", data)
+      localStorage.setItem("weatherData", JSON.stringify(data))
+       setLoading(false)
+       navigate('/Weather')
+      }
+    };
 
   const handlerGetLocation = async () => {
     swal({
@@ -32,6 +47,7 @@ function Location() {
           navigator.geolocation.getCurrentPosition(
             (position) => {
               const { latitude, longitude } = position.coords;    
+              console.log(latitude , longitude)
               fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
               .then(res=>res.json())
               .then(data=>{
@@ -45,10 +61,11 @@ function Location() {
         } 
       }
     })
-  
+
   };
 
   return (
+
     <section className="location">
         <div className="container">
             <div className="location_wrapper">

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Weathers.css";
 import { FaSearch, FaTimes } from "react-icons/fa";
 
 function Weathers() {
   const [search, setSearch] = useState(false);
+  const [dataWeather, setDataWeather] = useState(null);
+
+  useEffect(()=>{
+    const getDataWeather = localStorage.getItem("weatherData") ||[];
+    if(getDataWeather){
+      setDataWeather(JSON.parse(getDataWeather))
+    }
+  },[])
 
   const handlerShowSearch = () => {
     setSearch(true);
@@ -19,10 +27,12 @@ function Weathers() {
           <div className="container">
             <div className="weathers_wrapper">
               <div className="weathers_top">
+               
                 <div className="weathers_right">
                   <h3 className="weathers_title">وضعیت آب و هوا</h3>
-                  <span className="weathers_city">اسم شهر : tehran</span>
-                </div>
+                  <span className="weathers_city">اسم شهر :{dataWeather?.name} </span>
+               </div>
+
                 <div className="weathers_left">
                   <span className="weathers_search" onClick={handlerShowSearch}>
                     <FaSearch />
@@ -81,10 +91,12 @@ function Weathers() {
                   <div className="content_city">
                       <img src="/assets/images/clear_day.webp" alt="clear" className="content_city_img" />
                       <div className="content_city_details">
-                        <span className="content_city_name">tehran</span>
-                        <span className="content_city_sky">صاف</span>
-                        <span className="content_city_temps">9
-                        °</span>
+                        <span className="content_city_name">{dataWeather?.name}</span>
+                        <span className="content_city_sky">{dataWeather?.weather[0].description}</span>
+                        <span className="content_city_temps">
+                        {dataWeather?.main?.temp}
+                        ° 
+                        </span>
                       </div>
                   </div>
                   <div className="date_time">
@@ -105,21 +117,21 @@ function Weathers() {
                       <div className="details_row">
                         <div className="details_item">
                           <img src="/assets/images/wind.svg" alt="" className="details_item_img" />
-                          <span className="details_item_text">باد : 2 کیلومتر</span>
+                          <span className="details_item_text">باد : {dataWeather?.wind?.speed} کیلومتر</span>
                         </div>
                         <div className="details_item">
                           <img src="/assets/images/rain.svg" alt="" className="details_item_img" />
-                          <span className="details_item_text">رطوبت : 35 %</span>
+                          <span className="details_item_text">رطوبت : {dataWeather?.main?.humidity} %</span>
                         </div>
                       </div>
                       <div className="details_row">
                         <div className="details_item">
                           <img src="/assets/images/mxt.svg" alt="" className="details_item_img" />
-                          <span className="details_item_text"> بیشترین دما : 9.22</span>
+                          <span className="details_item_text"> بیشترین دما : {dataWeather?.main?.temp_max}</span>
                         </div>
                         <div className="details_item">
                           <img src="/assets/images/mit.svg" alt="" className="details_item_img" />
-                          <span className="details_item_text">کمترین دما : 6.22</span>
+                          <span className="details_item_text">کمترین دما : {dataWeather?.main?.temp_min}</span>
                         </div>
                       </div>
                   </div>
