@@ -130,7 +130,6 @@ function Weathers() {
           </div>
             {search && (
                  <div className="shadow"
-                 onClick={handlerShowExitSearch}
                  >
                  <div className="weathers_boxSearch">
                    <span className="weather_search_exit"
