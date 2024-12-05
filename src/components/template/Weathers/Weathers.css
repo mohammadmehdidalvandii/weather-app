@@ -271,3 +271,22 @@ font-weight: 700;
 .details_item_text{
     display: block;
 }
+.show_secondCity{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    position: relative;
+    border-top: 1px solid var(--white);
+    padding-top: 2rem;
+}
+
+.remove_secondCity{
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    font-size: 1.5em;
+    color: red;
+    cursor: pointer;
+}
