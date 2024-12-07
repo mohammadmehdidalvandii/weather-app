@@ -46,6 +46,14 @@ function Location() {
     }
   };
 
+  useEffect(()=>{
+      handlerGetWeather();
+      const inrevalid = setInterval(()=>{
+        handlerGetWeather();
+      },60000)
+      return ()=>clearInterval(inrevalid)
+  },[])
+
   const handlerGetLocation = async () => {
     swal({
       title: "آیا کشور شما ایران هستید ؟",

@@ -42,8 +42,53 @@ function Weathers() {
         buttons:"متوجه شدم"
       })
     }
-
   }
+
+  const handlerChangeCity = ()=>{
+    setLoading(true);
+    swal(({
+      title:`آیا از تغییر شهر ${dataWeather?.name} مطمن هستید ؟`,
+      icon:"error",
+      buttons:["نه","آره"],
+    })).then(async (result)=>{
+      if(result){
+        localStorage.removeItem("forecastData");
+        localStorage.removeItem("weatherData");
+        const res = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key_api}&units=metric`
+        );
+        if (res.status === 200) {
+          const data = await res.json();
+          const { lat, lon } = data.coord;
+          localStorage.setItem("weatherData", JSON.stringify(data));
+    
+          const forecast = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key_api}&units=metric`
+          );
+          if (forecast.status === 200) {
+            const forecastData = await forecast.json();
+            localStorage.setItem("forecastData", JSON.stringify(forecastData));
+            setLoading(false);
+            setSearch(false)
+            location.reload()
+          }
+        } else{
+          setLoading(false);
+          setSearch(false)
+          swal({
+            title:"شهر مورد نظر خود را اشتباه وارد کردید",
+            icon:"error",
+            buttons:"متوجه شدم"
+          })
+        }
+      }else{
+        setLoading(false);
+        setSearch(false)
+        setCity("")
+      }
+    })
+  }
+
   const handlerRemovedSecondCity = ()=>{
     swal({
       title:"آیا از حذف شهر دوم اطمینان دارید ؟",
@@ -259,10 +304,14 @@ function Weathers() {
                    </h6>
                    <input
                      type="text"
+                     value={city}
+                     onChange={e=>setCity(e.target.value)}
                      className="weathers_boxSearch_input"
                      placeholder="tehran"
                    />
-                   <button className="weathers_boxSearch_btn">جستجو</button>
+                   <button className="weathers_boxSearch_btn"
+                   onClick={handlerChangeCity}
+                   >جستجو</button>
                  </div>
                </div>
             )}
